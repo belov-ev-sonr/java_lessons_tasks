@@ -1,6 +1,6 @@
 
 
-public class Stack<T> {
+public class List<T> {
     private Node<T> last=null;
     private Node<T> first=null;
 
@@ -18,8 +18,6 @@ public class Stack<T> {
     private int sizeDefault=10;
     private int size=0;
 
-
-//    private Node<T>[] stack = new Node[sizeDefault];
 
 
     public void push(T value){
