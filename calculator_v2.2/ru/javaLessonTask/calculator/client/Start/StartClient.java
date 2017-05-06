@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class StartClient {
 
+
     public static void main(String[] args) throws IOException {
         RegistrationForm logger = new RegistrationForm();
         logger.registrForm.setSize(350,200);

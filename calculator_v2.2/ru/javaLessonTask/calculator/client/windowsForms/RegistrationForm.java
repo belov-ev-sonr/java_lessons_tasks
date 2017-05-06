@@ -1,6 +1,7 @@
 package ru.javaLessonTask.calculator.client.windowsForms;
 
 import ru.javaLessonTask.calculator.client.listeners.ActionListenerRegistration;
+import ru.javaLessonTask.calculator.client.listeners.ListenerClosedWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class RegistrationForm extends JFrame {
 
     public RegistrationForm(){
         registrForm = new JFrame("Регистрация");
+        registrForm.addWindowListener(new ListenerClosedWindow());
         JPanel panel = new JPanel(new GridLayout(5,1));
         label = new JLabel("Логин");
         textField = new TextField();

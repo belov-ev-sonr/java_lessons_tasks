@@ -61,6 +61,7 @@ public class ActionListenerRegistration implements ActionListener{
                 openTargetWindow();
             }else{
                 System.out.println("Не удалось авторизоваться");
+                RegistrationForm.labelInfo.setText("Не удалось авторизоваться");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,6 +74,7 @@ public class ActionListenerRegistration implements ActionListener{
                 openTargetWindow();
             }else{
                 System.out.println("Не удалось зарегестрировать пользователя");
+                RegistrationForm.labelInfo.setText("Не удалось зарегестрировать пользователя");
             }
         } catch (IOException e) {
             e.printStackTrace();

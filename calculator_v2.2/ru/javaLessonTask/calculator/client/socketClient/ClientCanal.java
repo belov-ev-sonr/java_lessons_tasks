@@ -11,19 +11,27 @@ import java.net.Socket;
 public class ClientCanal {
 
     private static ClientCanal instance;
-    private int PORT=2110;
+    private static int PORT=2110;
+    public static Socket socket;
 
     private ClientCanal() throws IOException {}
 
     public static ClientCanal getInstance() throws IOException {
-        if(instance==null)
-            instance=new ClientCanal();
+        if(instance==null) {
+            instance = new ClientCanal();
+            try {
+                socket = new Socket("localhost",PORT);
+            } catch (IOException e) {
+                RegistrationForm.labelInfo.setText("Сервер не отвечает");
+                System.out.println("Сервер не отвечает (ClientCanal-23)");
+            }
+        }
         return instance;
     }
 
 
     public boolean sendClientData(String message) {
-        try(Socket socket = new Socket("localhost",PORT)){
+        try {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeObject(message);
             outputStream.flush();
@@ -31,7 +39,7 @@ public class ClientCanal {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
 
             Object temp = inputStream.read();
-            if(!temp.equals(0))
+            if (!temp.equals(0))
                 return true;
             else
                 return false;
@@ -40,12 +48,17 @@ public class ClientCanal {
             System.out.println("Ошибка соединения с сервером");
             RegistrationForm.labelInfo.setText("Ошибка соединения с сервером");
             return false;
+        }catch (NullPointerException e1){
+            System.out.println("Соединение не создано");
+            RegistrationForm.labelInfo.setText("Соединение не создано");
+            e1.printStackTrace();
+            return false;
         }
     }
 
 
     public double sendClientData(StoreOperationNode node) throws ClassNotFoundException {
-        try(Socket socket = new Socket("localhost",PORT)){
+        try{
             ObjectOutputStream outputStream =new ObjectOutputStream(socket.getOutputStream());
             outputStream.writeObject(node);
             outputStream.flush();

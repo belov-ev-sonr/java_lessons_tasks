@@ -15,13 +15,12 @@ public class writeAndReadFile {
                         return true;
                     }
                 }
+                return false;
             }
-            return false;
         } catch (IOException e1) {
             e1.printStackTrace();
             return false;
         }
-
     }
 
 

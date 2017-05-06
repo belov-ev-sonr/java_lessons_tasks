@@ -27,7 +27,6 @@ public class StartServer {
             this.socket = socket;
             inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
-            start();
         }
 
         public void run() {
@@ -46,9 +45,13 @@ public class StartServer {
                         if (temp.substring(0, 3).equals("aut")) {
                             if (writeAndReadFile.seachingInFile(temp.substring(4), users))
                                 outputStream.write(1);
+                            else
+                                outputStream.write(0);
                         } else if (temp.substring(0, 3).equals("reg")) {
                             if (writeAndReadFile.writeFile(temp.substring(4), users))
                                 outputStream.write(1);
+                            else
+                                outputStream.write(0);
                         } else
                             outputStream.write(0);
 
@@ -73,7 +76,7 @@ public class StartServer {
             while(true){
                 Socket socket = serverSocket.accept();
                 try{
-                    new Client(socket);
+                    new Client(socket).start();
                 } catch (IOException e){
                     e.printStackTrace();
                 }

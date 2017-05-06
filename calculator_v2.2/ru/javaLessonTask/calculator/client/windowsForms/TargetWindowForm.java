@@ -1,6 +1,7 @@
 package ru.javaLessonTask.calculator.client.windowsForms;
 
 import ru.javaLessonTask.calculator.client.listeners.ActionListenerCalculator;
+import ru.javaLessonTask.calculator.client.listeners.ListenerClosedWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,7 @@ public class TargetWindowForm extends JFrame {
 
     public TargetWindowForm(){
         jframe = new JFrame("Калькулятор");
+        jframe.addWindowListener(new ListenerClosedWindow());
         JPanel panel_target = new JPanel(new BorderLayout());
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panel_arifmetic = new JPanel(new GridLayout(5,4));
