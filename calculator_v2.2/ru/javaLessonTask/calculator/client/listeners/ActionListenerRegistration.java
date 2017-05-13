@@ -34,8 +34,8 @@ public class ActionListenerRegistration implements ActionListener{
         }else{
             return;
         }
+        formationUsers();
         if(button.getText().equals("Войти")){
-            formationUsers();
             if(password.equals("")||user.equals("")) {
                 RegistrationForm.labelInfo.setText("Заполните поля");
                 return;
